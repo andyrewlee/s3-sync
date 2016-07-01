@@ -121,7 +121,7 @@ function s3syncer(db, options) {
           'x-amz-acl': options.acl
         , 'x-amz-meta-syncfilehash': details.md5
         , 'Content-Type': mime.lookup(absolute)
-      }, options.headers)
+      }, options.headers, details.headers || {})
 
       client.putFile(absolute, relative, headers, function(err, res) {
         if (!err) {
